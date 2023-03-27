@@ -1,8 +1,10 @@
+import { horizontalListSortingStrategy } from '@dnd-kit/sortable';
 import React from 'react';
 
+import { List } from '../Containers/List';
 import SlimCard from '../SlimCard/SlimCard';
 import { SortableItem } from '../SortableItem/SortableItem';
-import { SortableList } from './SortableList';
+import { SortableList } from '../SortableItem/SortableList';
 
 export default {
   title: 'SortableList',
@@ -12,8 +14,7 @@ export default {
 export const Default = () => {
   const options = {
     listOptions: {
-      handle: false,
-      useDragOverlay: false,
+      useDragOverlay: true,
     },
   };
 

@@ -1,4 +1,7 @@
-import { SortableItem } from './SortableItem/SortableItem';
-import { SortableList } from './SortableList/SortableList';
+import { horizontalListSortingStrategy } from '@dnd-kit/sortable';
 
-export { SortableItem, SortableList };
+import { List } from './Containers/List';
+import { SortableItem } from './SortableItem/SortableItem';
+import { SortableList } from './SortableItem/SortableList';
+
+export { horizontalListSortingStrategy, List, SortableItem, SortableList };

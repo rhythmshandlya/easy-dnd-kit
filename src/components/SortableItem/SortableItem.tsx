@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { Active, UniqueIdentifier } from '@dnd-kit/core';
+import { Active, UniqueIdentifier, useDroppable } from '@dnd-kit/core';
 import {
   AnimateLayoutChanges,
   defaultAnimateLayoutChanges,
