@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode;
 };
 type Context = {
-  getLists: any; //TODO: type this
+  lists: any; //TODO: type this
   setLists: any; //TODO: type this
 };
 
@@ -12,10 +12,10 @@ type Context = {
 const SortableListContext = createContext<Context | null>(null);
 
 export const SortableListContextProvider = ({ children }: Props) => {
-  const [getLists, setLists] = useState([]);
+  const [lists, setLists] = useState([]);
 
   return (
-    <SortableListContext.Provider value={{ getLists, setLists }}>
+    <SortableListContext.Provider value={{ lists, setLists }}>
       {children}
     </SortableListContext.Provider>
   );

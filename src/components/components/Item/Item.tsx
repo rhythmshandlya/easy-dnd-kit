@@ -3,7 +3,6 @@ import type { Transform } from '@dnd-kit/utilities';
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
 
-import SlimCard from '../SlimCard/SlimCard';
 import { Handle, Remove } from './components';
 import styles from './Item.module.css';
 
@@ -23,8 +22,21 @@ export interface Props {
   style?: React.CSSProperties;
   transition?: string | null;
   wrapperStyle?: React.CSSProperties;
-  onRemove?(): void;
   value: React.ReactNode;
+  onRemove?(): void;
+  renderItem?(args: {
+    dragOverlay: boolean;
+    dragging: boolean;
+    sorting: boolean;
+    index: number | undefined;
+    fadeIn: boolean;
+    listeners: DraggableSyntheticListeners;
+    ref: React.Ref<HTMLElement>;
+    style: React.CSSProperties | undefined;
+    transform: Props['transform'];
+    transition: Props['transition'];
+    value: Props['value'];
+  }): React.ReactElement;
 }
 
 export const Item = React.memo(
@@ -42,13 +54,14 @@ export const Item = React.memo(
         index,
         listeners,
         onRemove,
+        renderItem,
         sorting,
         style,
         transition,
         transform,
-        children,
-        wrapperStyle,
         value,
+        wrapperStyle,
+        children,
         ...props
       },
       ref,
@@ -65,14 +78,27 @@ export const Item = React.memo(
         };
       }, [dragOverlay]);
 
-      return (
+      return renderItem ? (
+        renderItem({
+          dragOverlay: Boolean(dragOverlay),
+          dragging: Boolean(dragging),
+          sorting: Boolean(sorting),
+          index,
+          fadeIn: Boolean(fadeIn),
+          listeners,
+          ref,
+          style,
+          transform,
+          transition,
+          value,
+        })
+      ) : (
         <li
           className={classNames(
             styles.Wrapper,
             fadeIn && styles.fadeIn,
             sorting && styles.sorting,
             dragOverlay && styles.dragOverlay,
-            'dnd-item',
           )}
           style={
             {
@@ -113,12 +139,12 @@ export const Item = React.memo(
             {...props}
             tabIndex={!handle ? 0 : undefined}
           >
-            {handle ? <Handle {...handleProps} {...listeners} /> : null}
-            {value}
+            {children}
             <span className={styles.Actions}>
               {onRemove ? (
                 <Remove className={styles.Remove} onClick={onRemove} />
               ) : null}
+              {handle ? <Handle {...handleProps} {...listeners} /> : null}
             </span>
           </div>
         </li>

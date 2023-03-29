@@ -1,10 +1,8 @@
-import { horizontalListSortingStrategy } from '@dnd-kit/sortable';
 import React from 'react';
 
-import { List } from '../Containers/List';
 import SlimCard from '../SlimCard/SlimCard';
 import { SortableItem } from '../SortableItem/SortableItem';
-import { SortableList } from '../SortableItem/SortableList';
+import { SortableList } from './SortableList';
 
 export default {
   title: 'SortableList',

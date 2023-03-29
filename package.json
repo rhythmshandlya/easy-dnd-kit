@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@easy-dnd-kit/core",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "A simple and easy to use drag and drop kit for React on top of dnd-kit library",
   "main": "build/index.js",
   "files": [

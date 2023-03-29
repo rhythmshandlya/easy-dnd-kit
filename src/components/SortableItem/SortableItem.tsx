@@ -47,7 +47,7 @@ export function SortableItem({
   return (
     <Item
       ref={setNodeRef}
-      value={id}
+      value={children}
       disabled={disabled}
       dragging={isDragging}
       sorting={isSorting}
@@ -77,8 +77,6 @@ export function SortableItem({
       data-id={id}
       dragOverlay={!useDragOverlay && isDragging}
       {...attributes}
-    >
-      {children}
-    </Item>
+    />
   );
 }
